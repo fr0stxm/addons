@@ -22,14 +22,14 @@ def CATEGORIES():
     for page_id, channame, name in match:
         addDir(name,
                ('http://www.perfectgirls.net/category/' + page_id + '/' + channame),
-               2, '', 1)
+               1, '', 1)
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 def VIDEOLIST(url):
     link = openURL(url)
     match = re.compile('-->\n<a href="/([0-9]+)/(.*)" title="(.*)">').findall(link)
     for v_id, videourl, name, in match:
-        addLink(name,'http://www.perfectgirls.net' + v_id + '/' + videourl,3,'icon.png')
+        addLink(name,'http://www.perfectgirls.net/' + v_id + '/' + videourl,2,'icon.png')
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 
@@ -38,9 +38,10 @@ def PLAYVIDEO(url):
     match = re.compile('get\("(.*)", function').findall(link)
     for configurl in match:
         link = openURL('http://www.perfectgirls.net' + configurl)
-        match2 = re.compile('(.*)').findall(link)
+        match2 = re.compile('http://(.*)').findall(link)
+        match3 = 'http://'+match2
         if match2:
-            xbmc.Player().play(match2[-1])
+            xbmc.Player().play(match3[-1])
 
 
 def get_params():
