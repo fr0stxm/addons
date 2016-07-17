@@ -37,9 +37,9 @@ def PLAYVIDEO(url):
     link = openURL(url)
     match = re.compile('get\("(.*)", function').findall(link)
     for configurl in match:
-        link = openURL('http://www.perfectgirls.net' + configurl)
+        link = openURL('http://www.perfectgirls.net/' + configurl)
         match2 = re.compile('http://(.*)').findall(link)
-        match3 = 'http://'+match2
+        match3 = ['http://' + str(match2[0])]
         if match2:
             xbmc.Player().play(match3[-1])
 
