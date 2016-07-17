@@ -6,8 +6,8 @@
 		<datadir zip="true">http://r.ninjasys.uk/zips</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary>The [COLOUR blue]Ninjasys[/COLOUR] repo.</summary>
-		<description>The [COLOUR blue]Ninjasys[/COLOUR] repo, containing all of [COLOUR white]oneil's[/COLOUR] addons.</description>
+		<summary>The [COLOR blue]Ninjasys[/COLOR] repo.</summary>
+		<description>The [COLOR blue]Ninjasys[/COLOR] repo, containing all of [COLOR white]oneil's[/COLOR] addons.</description>
 		<platform>all</platform>
 	</extension>
 </addon>
