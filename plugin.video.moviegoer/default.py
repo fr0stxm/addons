@@ -17,6 +17,7 @@ opener = urllib2.build_opener(cookie_handler)
 addon_id = 'plugin.video.moviegoer'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 icon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+playbackicon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'playbackicon.png'))
 
 def CATEGORIES():
     addDir('[COLOR red]Latest[/COLOR]', 'http://www.moviego.cc', 1, icon, 1)
@@ -67,12 +68,12 @@ def addDir(name, url, mode, thumb, page):
                                      listitem=liz, isFolder=True)
     return ok
 
-def PLAYVIDEO(url, name, thumb):
+def PLAYVIDEO(url, name):
     link = openURL(url)
     match = re.compile('file:\s"(.*)"').findall(link)
     for video in match:
         ok=True
-        liz=xbmcgui.ListItem(name, iconImage=thumb,thumbnailImage=thumb); liz.setInfo( type="Video", infoLabels={ "Title": name } )
+        liz=xbmcgui.ListItem(name, iconImage=playbackicon,thumbnailImage=playbackicon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
         xbmc.Player().play(video, liz, False)
 
@@ -90,7 +91,6 @@ def main():
     url = None
     name = None
     mode = None
-    thumb = None
     page = 1
 
     try:
@@ -109,10 +109,6 @@ def main():
         page = int(params["page"])
     except:
         pass
-    try:
-        thumb = urllib.unquote_plus(params["thumb"])
-    except:
-        pass
 
     if mode == None or url == None or len(url) < 1:
         CATEGORIES()
@@ -124,7 +120,7 @@ def main():
 
     elif mode == 2:
         xbmc.log("PLAYVIDEO ")
-        PLAYVIDEO(url, name, thumb)
+        PLAYVIDEO(url, name)
 
 
 if __name__ == "__main__":
