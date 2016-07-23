@@ -18,10 +18,19 @@ addon_id = 'plugin.video.moviegoer'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 icon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 playbackicon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'playbackicon.png'))
+sitio ="moviego.cc"
 
 def CATEGORIES():
-    addDir('[COLOR red]Latest[/COLOR]', 'http://www.moviego.cc', 1, icon, 1)
-    addDir('[COLOR red]Top 2016[/COLOR]', 'http://www.moviego.cc/top2016', 1, icon, 1)
+    addDir('[COLOR red]Latest[/COLOR]', 'http://www.' + sitio, 1, icon, 1)
+    addDir('[COLOR blue]All Movies[/COLOR]', 'http://www.' + sitio + '/movies', 1, icon, 1)
+    addDir('[COLOR red]Top 2016[/COLOR]', 'http://www.' + sitio + '/top2016', 1, icon, 1)
+    addDir('2015', 'http://www.' + sitio + '/movies/2015', 1, icon, 1)
+    addDir('2014', 'http://www.' + sitio + '/movies/2014', 1, icon, 1)
+    addDir('2013', 'http://www.' + sitio + '/movies/2013', 1, icon, 1)
+    addDir('Action', 'http://www.' + sitio + '/movies/movies_action', 1, icon, 1)
+    addDir('Adventure', 'http://www.' + sitio + '/movies/movies_adventure', 1, icon, 1)
+    addDir('Comedy', 'http://www.' + sitio + '/movies/movies_comedy', 1, icon, 1)
+
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 def VIDEOLIST(url):
