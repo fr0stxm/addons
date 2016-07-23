@@ -67,12 +67,12 @@ def addDir(name, url, mode, thumb, page):
                                      listitem=liz, isFolder=True)
     return ok
 
-def PLAYVIDEO(url, name):
+def PLAYVIDEO(url, name, thumb):
     link = openURL(url)
     match = re.compile('file:\s"(.*)"').findall(link)
     for video in match:
         ok=True
-        liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
+        liz=xbmcgui.ListItem(name, iconImage=thumb,thumbnailImage=thumb); liz.setInfo( type="Video", infoLabels={ "Title": name } )
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
         xbmc.Player().play(video, liz, False)
 
@@ -90,6 +90,7 @@ def main():
     url = None
     name = None
     mode = None
+    thumb = None
     page = 1
 
     try:
@@ -108,6 +109,10 @@ def main():
         page = int(params["page"])
     except:
         pass
+    try:
+        thumb = urllib.unquote_plus(params["thumb"])
+    except:
+        pass
 
     if mode == None or url == None or len(url) < 1:
         CATEGORIES()
@@ -119,7 +124,7 @@ def main():
 
     elif mode == 2:
         xbmc.log("PLAYVIDEO ")
-        PLAYVIDEO(url, name)
+        PLAYVIDEO(url, name, thumb)
 
 
 if __name__ == "__main__":
