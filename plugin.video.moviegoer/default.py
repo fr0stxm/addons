@@ -32,7 +32,7 @@ def CATEGORIES():
 
 def VIDEOLIST(url):
     link = openURL(url)
-    match = re.compile('<div class="short_content">\n<a href="(.*)">\n<img src="(.*)" alt="(.*)" class=', re.DOTALL).findall(link)
+    match = re.compile('<div class="short_content">.+?<a href="(.+?)">.+?<img src="(.+?)" alt="(.+?)" class=', re.DOTALL).findall(link)
     for url, thumb, name, in match:
         thumb = 'http://' + sitio + thumb
         addLink(name,url,2,thumb)
