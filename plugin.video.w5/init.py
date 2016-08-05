@@ -10,31 +10,27 @@ the hard working developers. You are known, we are watching.
 
 import sys, os, xbmc, xbmcgui, xbmcplugin, xbmcaddon, urllib, urllib2, cookielib, re
 
-settings = xbmcaddon.Addon(id='plugin.video.moviegoer')
+settings = xbmcaddon.Addon(id='plugin.video.w5')
 cookiejar = cookielib.LWPCookieJar()
 cookie_handler = urllib2.HTTPCookieProcessor(cookiejar)
 opener = urllib2.build_opener(cookie_handler)
-addon_id = 'plugin.video.moviegoer'
+addon_id = 'plugin.video.w5'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 icon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 playbackicon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'playbackicon.png'))
-sitio ="moviego.cc"
+sitio ="watch5.com"
 
 def CATEGORIES():
-    addDir('[COLOR red]Latest[/COLOR]', 'http://www.' + sitio, 1, icon, 1)
-    addDir('[COLOR blue]All Movies[/COLOR]', 'http://www.' + sitio + '/movies', 1, icon, 1)
-    addDir('[COLOR red]Top 2016[/COLOR]', 'http://www.' + sitio + '/top2016', 1, icon, 1)
-    addDir('2015', 'http://www.' + sitio + '/movies/2015', 1, icon, 1)
-    addDir('2014', 'http://www.' + sitio + '/movies/2014', 1, icon, 1)
-    addDir('2013', 'http://www.' + sitio + '/movies/2013', 1, icon, 1)
-
+    link = openURL(sitio)
+    match = re.compile('<li><a href="(.*?)">(.*?)</a></li>').findall(link)
+    for catlink, category in match:
+        addDir(category, catlink, 1, icon, 1)
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 def VIDEOLIST(url):
     link = openURL(url)
-    match = re.compile('<div class="short_content">\n<a href="(.*)">\n<img src="(.*)" alt="(.*)" class=', re.DOTALL).findall(link)
+    match = re.compile('<div class="short_content">\n<a href="(.*)">\n<img src="(.*)" alt="(.*)" class=').findall(link)
     for url, thumb, name, in match:
-        thumb = 'http://' + sitio + thumb
         addLink(name,url,2,thumb)
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
@@ -67,6 +63,7 @@ def addLink(name, url, mode, thumb):
 
 
 def addDir(name, url, mode, thumb, page):
+    # type: (object, object, object, object, object) -> object
     u = sys.argv[0] + "?url=" + urllib.quote_plus(url) + "&mode=" + str(mode) +\
         "&name=" + urllib.quote_plus(name) + "&page=" + str(page)
     ok = True
