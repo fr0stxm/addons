@@ -77,7 +77,10 @@ def addDir(name, url, mode, thumb, page):
 
 def PLAYVIDEO(url, name):
     link = openURL(url)
-    match = re.compile('file:\s"(.*)"').findall(link)
+    try:
+        match = re.compile('file:\s"(.*)"').findall(link)
+    Except:
+
     for video in match:
         ok=True
         liz=xbmcgui.ListItem(name, iconImage=playbackicon,thumbnailImage=playbackicon); liz.setInfo( type="Video", infoLabels={ "Title": name } )

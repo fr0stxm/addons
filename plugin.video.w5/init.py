@@ -18,13 +18,11 @@ addon_id = 'plugin.video.w5'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 icon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 playbackicon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'playbackicon.png'))
-sitio ="watch5.com"
+sitio ="watch5s.com"
 
 def CATEGORIES():
-    link = openURL(sitio)
-    match = re.compile('<li><a href="(.*?)">(.*?)</a></li>').findall(link)
-    for catlink, category in match:
-        addDir(category, catlink, 1, icon, 1)
+    addDir("Home", sitio, 1, icon, 1)
+    addDir("Movies", "http://watch5s.com/movie/", 1, icon, 1)
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 def VIDEOLIST(url):
