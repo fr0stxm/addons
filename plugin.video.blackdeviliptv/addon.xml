@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.blackdeviliptv" name="[COLOR orange]Orbital[/COLOR] [COLOR blue]TV[/COLOR] Network" version="5.0.2" provider-name="[COLOR red]Team Orbit[/COLOR]">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="script.ivuesport" version="0.0.6" />
+		<import addon="xbmc.repo.ivueguide" version="0.0.1" />
+		<import addon="repository.und3ad" version="0.0.1"/>
+		<import addon="script.module.pyxbmct" version="1.1.4" />
+		<import addon="script.module.xmltodict"/>
+        <import addon="script.module.requests"/>
+		<import addon="script.module.und3ad"/>
+				<import addon="script.video.F4mProxy"/>
+		<import addon="plugin.video.youtube" optional="true" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Orbital Streams, out of this world IPTV service</summary>
+		<description lang="en">HD streams brought to you.</description>
+		<platform>all</platform>
+		<forum></forum>
+		<website></website>
+	</extension>
+</addon>
