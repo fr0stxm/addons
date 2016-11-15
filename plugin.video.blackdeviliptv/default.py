@@ -56,7 +56,7 @@ def decodeText(text):
 def start_up():
     # Check for Username and password
     if USERNAME == '' or PASSWORD == '':
-        xbmcgui.Dialog().ok('Credentials not set', 'On the next screen, please enter your subscription information.')
+        xbmcgui.Dialog().ok('[COLOR red]Credentials not set[/COLOR]', 'On the next screen, please enter your subscription information.')
         addon.openSettings()
         return
     if panel_auth.getAuth(USERNAME, PASSWORD, addon_vars.panel):

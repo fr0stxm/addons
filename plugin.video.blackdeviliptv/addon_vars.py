@@ -5,7 +5,8 @@ panel = 33
 pvrID = 'pvr.iptvsimple'
 m3uUrlId = 'm3uUrl'
 epgUrlId = 'epgUrl'
-epgUrl = 'http://blackdevilslounge.co.uk/EPG/tvguide3.xml'
+#epgUrl = 'http://blackdevilslounge.co.uk/EPG/tvguide3.xml'
+epgUrl = 'http://clearviewpro.club/orb/Orbital_TP.xml'
 
 #menus jsons
 
