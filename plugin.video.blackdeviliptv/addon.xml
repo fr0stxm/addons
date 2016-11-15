@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.blackdeviliptv" name="[COLOR orange]Orbital[/COLOR] [COLOR blue]TV[/COLOR] Network" version="5.0.2" provider-name="[COLOR red]Team Orbit[/COLOR]">
+<addon id="plugin.video.blackdeviliptv" name="[COLOR orange]Orbital[/COLOR] [COLOR blue]TV[/COLOR] Network" version="5.0.3" provider-name="[COLOR red]Team Orbit[/COLOR]">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.ivuesport" version="0.0.6" />
