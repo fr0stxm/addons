@@ -27,7 +27,7 @@ AUTH_DATA = {
     'user': mainuser, #subuser for the above panel
     'pass': mainpass, #subpass for the above panel
     'username': 'blackdevilslounge', #your und3ad username
-    'tag': 'xmlList', #the tag for the url you want returned from und3ad
+    'tag': 'BDL', #the tag for the url you want returned from und3ad
     'format': 'raw', #As stated above the return format required
 }
 AUTH_DATA = urllib.urlencode(AUTH_DATA)
@@ -52,11 +52,6 @@ class indexer:
             return self.list
         except:
             pass
-	
-	def ivue(url):
-		runstring = 'RunPlugin(plugin://script.ivueguide)'
-		control.execute(runstring)
-
 
     def get(self, url):
         try:

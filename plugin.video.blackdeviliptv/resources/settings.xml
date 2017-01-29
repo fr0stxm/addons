@@ -1,10 +1,10 @@
 <settings>
 	<category label="Login">
-		<setting type="lsep" label="[COLOR red]Orbital TV Network[/COLOR]" />
+		<setting type="lsep" label="Orbital TV Network" />
 		<setting id="devilssub_user" type="text" visible="true" label="Username" default=""/>
 		<setting id="devilssub_pass" type="text" visible="true" option="hidden" label="Password" default=""/>
 	</category>
-
+	
 	<category label="30715">
 		<setting type="lsep" label="30716" />
 		<setting id="metadata" type="bool" label="30717" default="true" />
@@ -15,3 +15,4 @@
 	</category>
 
 </settings>
+

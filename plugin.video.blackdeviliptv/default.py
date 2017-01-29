@@ -12,11 +12,13 @@ import xbmcgui
 import xbmcplugin
 import xmltodict
 import addon_vars
+import pyxbmct
 from und3ad.kodi_specific import *
 from und3ad.kodi_specific.api import my_account as ma
 from und3ad.kodi_specific.api import panel_auth
 from und3ad.kodi_specific.api import *
 import und3ad.kodi_specific.pvr as pvr
+
 
 def server_address():
     return panel_auth.getServer(addon_vars.panel)
@@ -56,7 +58,7 @@ def decodeText(text):
 def start_up():
     # Check for Username and password
     if USERNAME == '' or PASSWORD == '':
-        xbmcgui.Dialog().ok('[COLOR red]Credentials not set[/COLOR]', 'On the next screen, please enter your subscription information.')
+        xbmcgui.Dialog().ok('[COLOR orange]Warning[/COLOR]','On the next screen, please enter your subscription information.')
         addon.openSettings()
         return
     if panel_auth.getAuth(USERNAME, PASSWORD, addon_vars.panel):
@@ -75,8 +77,9 @@ def live_tv():
     xtream_codes.show_live_television_categories(server, USERNAME, PASSWORD, fanart, icon)
 
 def show_tv_playlist(cat_id):
-    xbmc.log(str(route.params))
-    xtream_codes.show_television_channels_for_category(server, USERNAME, PASSWORD, fanart, icon)
+	xbmc.log(str(route.params))
+	xtream_codes.show_television_channels_for_category(server, USERNAME, PASSWORD, fanart, icon)
+	print
 
 def playevl():
     player.play(fanart, icon)
@@ -152,10 +155,6 @@ elif action == 'directory':
         from resources.lib.indexers import devilsoriginstreams
 
         devilsoriginstreams.indexer().get(url)
-
-elif action == 'ivuesport':
-    runstring = 'RunScript(script.ivuesport)'
-    xbmc.executebuiltin(runstring)
 
 elif action == 'developer':
     from resources.lib.indexers import devilsoriginstreams
@@ -245,12 +244,14 @@ elif action == 'clearCache':
     cache.clear()
 
 elif action == 'todaysSchedule':
-	from resources.lib.modules import scheduleBuilder
-	scheduleBuilder.getTodaysSchedule()
-
-elif action == 'tomorrowsSchedule':
-	from resources.lib.modules import scheduleBuilder
-	scheduleBuilder.getTomorrowsSchedule()
+	from resources.lib.modules import scheduleWindow
+	#scheduleBuilder.getTodaysSchedule()
+	pyxbmct.skin.estuary = True
+	mainScheduleWindow = scheduleWindow.newScheduleWindow('Schedule Window')
+	mainScheduleWindow.doModal()
+	# Destroy the instance explicitly because
+	# underlying xbmcgui classes are not garbage-collected on exit.
+	del mainScheduleWindow
 
 #####UND3AD CODE####
 elif action == 'startup':

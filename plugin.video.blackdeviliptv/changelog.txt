@@ -1,6 +1,2 @@
-[B]5.0.3[/B]
-Added new menu for Facebook page
-Updated EPG details.
-
 [B]0.0.2[/B]
 Brand New
