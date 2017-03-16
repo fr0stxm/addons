@@ -4,18 +4,13 @@ These addons are only possible because websites are open and allow us to view th
 These addons are also only possible due to the numerous hours the kodi developers and addon developers put in to ensure that
 you, the user can have as much content as you need.
 
-However, it is incredibly clear that numerous people exist to take content and pass it off as their own. PLEASE do not do that
-if you are going to borrow code, then please ensure you credit those involved.
-
-Author: oneil from Ninjasys - @oneilxm_uk
-Git: github.com/fr0stxm
-Addon: Just For Him
-Thank you / Acknowledgement: The Kodi community, Wizard from Sanctuary/Kodification for his adjustments
+However, it is incredibly clear that numerous cunts exist in the community and like nothing than to rip of the code of us,
+the hard working developers. You are known, we are watching.
 '''
 
-import sys, os, xbmc, xbmcgui, xbmcplugin, xbmcaddon, urllib, urllib2, cookielib, re, clean_name
+import sys, os, xbmc, xbmcgui, xbmcplugin, xbmcaddon, urllib, urllib2, cookielib, re
 
-settings = xbmcaddon.Addon(id='plugin.video.jfh')
+settings = xbmcaddon.Addon(id='plugin.video.g6')
 cookiejar = cookielib.LWPCookieJar()
 cookie_handler = urllib2.HTTPCookieProcessor(cookiejar)
 opener = urllib2.build_opener(cookie_handler)
@@ -24,45 +19,31 @@ selfAddon = xbmcaddon.Addon(id=addon_id)
 icon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 
 def CATEGORIES():
-    link = openURL('http://www.perfectgirls.net/')
-    match = re.compile('<a href="/category/([0-9][0-9])/(.*)">(.*)</a>').findall(link)
-    addDir('[COLOR red]Latest - Homepage[/COLOR]', 'http://www.perfectgirls.net/', 1, icon, 1)
-    for page_id, channame, name in match:
+    link = openURL('http://cmovieshd.com/')
+    match = re.compile('<li><a href=\"http:\/\/cmovieshd.com\/genre\/(.+?)\/\" title=\"(.+?)\">(.*?)<\/a>').findall(link)
+    for cat, name, link in match:
         addDir(name,
-               ('http://www.perfectgirls.net/category/' + page_id + '/' + channame),
+               ('http://cmovieshd.com/genre/' + cat + '/' + link),
                1, icon, 1)
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 def VIDEOLIST(url):
-    pg = 'http://www.perfectgirls.net/'
     link = openURL(url)
-    match = re.compile('<div class="list__item_link"><a href="(.+?)".+?title="(.+?)".+?data-original="(.+?)".+?<time>(.+?)</time>',re.DOTALL).findall(link)
-    for url2,name,img,length in match:
-        import clean_name
-        name = clean_name.clean_name(name)
-        addLink('[COLORred]'+length+'[/COLOR] - '+name,pg+url2,2,icon)
-    next = re.compile('<a class="btn_wrapper__btn" href="([^"]*)">Next</a>').findall(link)
-    for item in next:
-        if url[-1] in '0123456789':
-            url3 = url[:-1]+item
-        else:
-            url3 = url+'/'+item
-        addDir('Next Page',url3,1,icon,'')
+    match = re.compile('-->\n<a href="/([0-9]+)/(.*)" title="(.*)">').findall(link)
+    for v_id, videourl, name, in match:
+        addLink(name,'http://cmovieshd.com/' + v_id + '/' + videourl,2,icon)
+    xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 
 def PLAYVIDEO(url):
-    Dialog = xbmcgui.Dialog()
-    sources = []
     link = openURL(url)
-    match = re.compile('<source src="(.+?)".+?res="(.+?)"').findall(link)
-    for playlink,quality in match:
-        sources.insert(0, {'quality': quality, 'playlink': playlink})
-        if len(sources) == len(match):
-            choice = Dialog.select('Select Playlink',[link["quality"] for link in sources])
-            if choice != -1:
-                playlink = sources[choice]['playlink']
-                isFolder=False
-                xbmc.Player().play(playlink)
+    match = re.compile('get\("(.*)", function').findall(link)
+    for configurl in match:
+        link = openURL('http://cmovieshd.com/' + configurl)
+        match2 = re.compile('http://(.*)').findall(link)
+        match3 = ['http://' + str(match2[0])]
+        if match2:
+            xbmc.Player().play(match3[-1])
 
 
 def get_params():
@@ -153,4 +134,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-xbmcplugin.endOfDirectory(int(sys.argv[1]))
