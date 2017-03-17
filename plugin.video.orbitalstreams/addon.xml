@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.orbitalstreams" name="Orbital Streams" version="6.0.5" provider-name="Team Orbital">
+<addon id="plugin.video.orbitalstreams" name="Orbital Streams" version="6.0.6" provider-name="Team Orbital">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="repository.und3ad" version="0.0.1"/>
@@ -16,7 +16,7 @@
 		<summary lang="en">Orbital Streams</summary>
 		<description lang="en">HD streams brought to you.</description>
 		<platform>all</platform>
-		<forum></forum>
-		<website></website>
+		<forum>N/A</forum>
+		<website>https://orbitalstreams.pw</website>
 	</extension>
 </addon>
