@@ -26,16 +26,18 @@ playbackicon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_
 proxy = 'http://hls.iptv.optimum.net/news12/nipadlive/index_new.m3u8?callsign='
 
 def VIDEOLIST():
-    link = openURL('http://adx.news12.com/livevideo/livevideo_iframe.html')
-    match = re.compile('streamname = \"N(.*?)\"').findall(link)
-    for name, in match:
-        name2='N'+ name
-        addLink(name2,proxy + name2,2,icon)
+    addLink('News 12: Bronx',proxy + 'N12BX',2,icon)
+    addLink('News 12: Brooklyn',proxy + 'N12KN',2,icon)
+    addLink('News 12: Connecticut',proxy + 'N12CT_WEST',2,icon)
+    addLink('News 12: Hudson Valley',proxy + 'N12HV',2,icon)
+    addLink('News 12: Long Island',proxy + 'N12LI_WEST',2,icon)
+    addLink('News 12: New Jersey',proxy + 'N12NJ_CENTRAL',2,icon)
+    addLink('News 12: Westchester',proxy + 'N12WH_WESTCHESTER',2,icon)
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
-def PLAYVIDEO(url, name2):
+def PLAYVIDEO(url, name):
     ok=True
-    liz=xbmcgui.ListItem(name2, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name2 } )
+    liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
     ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
     xbmc.Player().play(url, liz, False)
 
@@ -101,7 +103,7 @@ def main():
         pass
 
     if mode == None or url == None or len(url) < 1:
-        VIDEOLIST(url)
+        VIDEOLIST()
 
     elif mode == 1:
         VIDEOLIST(url)
