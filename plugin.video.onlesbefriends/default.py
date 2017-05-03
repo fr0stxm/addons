@@ -9,61 +9,50 @@ if you are going to borrow code, then please ensure you credit those involved.
 
 Author: oneil from Ninjasys - @oneilxm_uk
 Git: github.com/fr0stxm
-Addon: Just For Him
-Thank you / Acknowledgement: The Kodi community, Wizard from Sanctuary/Kodification for his adjustments
+Addon: Les-Be-Friends
+Thank you / Acknowledgement: Those that exist in the Kodi telegram groups & Kodification for clean_name.py, ][ for his lack of help, Dandymedia for his insight.
 '''
 
 import sys, os, xbmc, xbmcgui, xbmcplugin, xbmcaddon, urllib, urllib2, cookielib, re, clean_name
 
-settings = xbmcaddon.Addon(id='plugin.video.jfh')
+settings = xbmcaddon.Addon(id='plugin.video.onlesbefriends')
 cookiejar = cookielib.LWPCookieJar()
 cookie_handler = urllib2.HTTPCookieProcessor(cookiejar)
 opener = urllib2.build_opener(cookie_handler)
-addon_id = 'plugin.video.jfh'
+addon_id = 'plugin.video.onlesbefriends'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 icon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 
 def CATEGORIES():
-    link = openURL('http://www.perfectgirls.net/')
-    match = re.compile('<a href="/category/([0-9][0-9])/(.*)">(.*)</a>').findall(link)
-    addDir('[COLOR red]Latest[/COLOR]', 'http://www.perfectgirls.net/', 1, icon, 1)
-    addDir('---', '', 1, '', 1)
-    for page_id, channame, name in match:
-        addDir(name,
-               ('http://www.perfectgirls.net/category/' + page_id + '/' + channame),
-               1, icon, 1)
+    link = openURL('http://www.lesbianpornvideos.com/')
+    match = re.compile('<li><a href=\"http://www.lesbianpornvideos.com/videos/lesbian/(.*?)\" >(.*?)<br><img src=\"(.*?)\" alt=').findall(link)
+    for caturl, name, img in match:
+        addDir(name, 'http://www.lesbianpornvideos.com/videos/lesbian/'+ caturl, 1, img, 1)
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 def VIDEOLIST(url):
-    pg = 'http://www.perfectgirls.net/'
+    pg = 'http://www.lesbianpornvideos.com/'
     link = openURL(url)
-    match = re.compile('<div class="list__item_link"><a href="(.+?)".+?title="(.+?)".+?data-original="(.+?)".+?<time>(.+?)</time>',re.DOTALL).findall(link)
-    for url2,name,img,length in match:
-        import clean_name
-        name = clean_name.clean_name(name)
-        addLink('[COLORred]'+length+'[/COLOR] - '+name,pg+url2,2,icon)
-    next = re.compile('<a class="btn_wrapper__btn" href="([^"]*)">Next</a>').findall(link)
+    match = re.compile('<a href=\"http://www.lesbianpornvideos.com/click/.*/video/(.*?)\" class="thumb-img"><img src=\"(.*?)\" width=.* alt=\"(.*?)\"').findall(link)
+    for ucode, img, name in match:
+        addLink('[COLOR red]'+name+'[/COLOR]','http://www.lesbianpornvideos.com/video/'+ ucode, 2, img)
+    next = re.compile('<div class=\"pagination\">.*<a href="([^"]*)\">.+?</a>.+?</div>',re.DOTALL).findall(link)
     for item in next:
         if url[-1] in '0123456789':
             url3 = url[:-1]+item
         else:
-            url3 = url+'/'+item
-        addDir('Next Page',url3,1,icon,'')
+            url3 = item
+        #addDir('Next Page',url3,1,icon,'')
 
 
 def PLAYVIDEO(url):
     Dialog = xbmcgui.Dialog()
     sources = []
     link = openURL(url)
-    match = re.compile('<source src="(.+?)".+?res="(.+?)"').findall(link)
-    for playlink,quality in match:
-        sources.insert(0, {'quality': quality, 'playlink': playlink})
-        if len(sources) == len(match):
-            choice = Dialog.select('Select Playlink',[link["quality"] for link in sources])
-            if choice != -1:
-                playlink = sources[choice]['playlink']
-                isFolder=False
-                xbmc.Player().play(playlink)
+    match = re.compile('\{.*file\: \"(.*?)\"\,.*label\: \"720p HD\"\,', re.DOTALL).findall(link)
+    for playlink in match:
+        isFolder=False
+        xbmc.Player().play(playlink)
 
 
 def get_params():
@@ -108,7 +97,7 @@ def addDir(name, url, mode, iconimage, page):
 
 def openURL(url):
     req = urllib2.Request(url)
-    req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
+    req.add_header('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36')
     response = urllib2.urlopen(req)
     link = response.read()
     response.close()
@@ -148,7 +137,7 @@ def main():
         VIDEOLIST(url)
 
     elif mode == 2:
-        xbmc.log("PLAYVIDEO " + url)
+        xbmc.log("PLAYVIDEO ")
         PLAYVIDEO(url)
 
 
