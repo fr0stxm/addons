@@ -33,6 +33,13 @@ def VIDEOLIST():
     addLink('News 12: Long Island',proxy + 'N12LI_WEST',2,icon)
     addLink('News 12: New Jersey',proxy + 'N12NJ_CENTRAL',2,icon)
     addLink('News 12: Westchester',proxy + 'N12WH_WESTCHESTER',2,icon)
+    addLink('News 12: Bronx [COLOR yellow]Weather[/COLOR]',proxy + 'N12TW_NYC',2,icon)
+    addLink('News 12: Brooklyn [COLOR yellow]Weather[/COLOR]',proxy + 'N12TW_NYC',2,icon)
+    addLink('News 12: Connecticut [COLOR yellow]Weather[/COLOR]',proxy + 'N12TW_CT',2,icon)
+    addLink('News 12: Hudson Valley [COLOR yellow]Weather[/COLOR]',proxy + 'N12TW_WC',2,icon)
+    addLink('News 12: Long Island [COLOR yellow]Weather[/COLOR]',proxy + 'N12TW_LI',2,icon)
+    addLink('News 12: New Jersey [COLOR yellow]Weather[/COLOR]',proxy + 'N12TW_NJ',2,icon)
+    addLink('News 12: Westchester [COLOR yellow]Weather[/COLOR]',proxy + 'N12TW_WC',2,icon)
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 def PLAYVIDEO(url, name):
