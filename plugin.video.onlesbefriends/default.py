@@ -24,18 +24,19 @@ selfAddon = xbmcaddon.Addon(id=addon_id)
 icon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 
 def CATEGORIES():
-    link = openURL('http://www.lesbianpornvideos.com/')
-    match = re.compile('<li><a href=\"http://www.lesbianpornvideos.com/videos/lesbian/(.*?)\" >(.*?)<br><img src=\"(.*?)\" alt=').findall(link)
+    link = openURL('https://www.lesbianpornvideos.com/')
+    match = re.compile('<li><a href=\"https://www.lesbianpornvideos.com/videos/lesbian/(.*?)\" >(.*?)<br><img loading="lazy" src=\"(.*?)\" alt=').findall(link)
     for caturl, name, img in match:
-        addDir(name, 'http://www.lesbianpornvideos.com/videos/lesbian/'+ caturl, 1, img, 1)
+        addDir(name, 'https://www.lesbianpornvideos.com/videos/lesbian/'+ caturl, 1, img, 1)
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 def VIDEOLIST(url):
-    pg = 'http://www.lesbianpornvideos.com/'
+    pg = 'https://www.lesbianpornvideos.com/'
     link = openURL(url)
-    match = re.compile('<a href=\"http://www.lesbianpornvideos.com/click/.*/video/(.*?)\" class="thumb-img"><img src=\"(.*?)\" width=.* alt=\"(.*?)\"').findall(link)
+    # \s+ thanks to Tony
+    match = re.compile('<a href=\"https://www.lesbianpornvideos.com/click/.*/video/(.*?)\" class=\"thumb-img\" id=\"trailerp\">\s+<img loading="lazy" src=\"(.*?)\" width=.* height=.* alt=\"(.*?)\"').findall(link)
     for ucode, img, name in match:
-        addLink('[COLOR red]'+name+'[/COLOR]','http://www.lesbianpornvideos.com/video/'+ ucode, 2, img)
+        addLink('[COLOR red]'+name+'[/COLOR]','https://www.lesbianpornvideos.com/video/'+ ucode, 2, img)
     next = re.compile('<div class=\"pagination\">.*<a href="([^"]*)\">.+?</a>.+?</div>',re.DOTALL).findall(link)
     for item in next:
         if url[-1] in '0123456789':
