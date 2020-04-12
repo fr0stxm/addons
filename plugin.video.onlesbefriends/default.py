@@ -25,7 +25,7 @@ icon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'ico
 
 def CATEGORIES():
     link = openURL('https://www.lesbianpornvideos.com/')
-    match = re.compile('<li><a href=\"https://www.lesbianpornvideos.com/videos/lesbian/(.*?)\" >(.*?)<br><img loading="lazy" src=\"(.*?)\" alt=').findall(link)
+    match = re.compile('<li><a href=\"https:\/\/www.lesbianpornvideos.com\/videos\/lesbian\/(.*?)\" >(.*?)<br><img loading="lazy" src=\"(.*?)\" alt=').findall(link)
     for caturl, name, img in match:
         addDir(name, 'https://www.lesbianpornvideos.com/videos/lesbian/'+ caturl, 1, img, 1)
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
@@ -34,7 +34,7 @@ def VIDEOLIST(url):
     pg = 'https://www.lesbianpornvideos.com/'
     link = openURL(url)
     # \s+ thanks to Tony
-    match = re.compile('<a href=\"https://www.lesbianpornvideos.com/click/.*/video/(.*?)\" class=\"thumb-img\" id=\"trailerp\">\s+<img loading="lazy" src=\"(.*?)\" width=.* height=.* alt=\"(.*?)\"').findall(link)
+    match = re.compile('<a href=\"https:\/\/www.lesbianpornvideos.com\/click\/.*\/video\/(.*?)\" class=\"thumb-img\" id=\"trailerp\">\s+<img loading="lazy" src=\"(.*?)\" width=.* height=.* alt=\"(.*?)\"').findall(link)
     for ucode, img, name in match:
         addLink('[COLOR red]'+name+'[/COLOR]','https://www.lesbianpornvideos.com/video/'+ ucode, 2, img)
     next = re.compile('<div class=\"pagination\">.*<a href="([^"]*)\">.+?</a>.+?</div>',re.DOTALL).findall(link)
@@ -98,7 +98,7 @@ def addDir(name, url, mode, iconimage, page):
 
 def openURL(url):
     req = urllib2.Request(url)
-    req.add_header('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36')
+    req.add_header('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:75.0) Gecko/20100101 Firefox/75.0')
     response = urllib2.urlopen(req)
     link = response.read()
     response.close()
