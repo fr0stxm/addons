@@ -1,16 +1,18 @@
 '''
 These addons are only possible because websites are open and allow us to view them for free.
 
-These addons are also only possible due to the numerous hours the kodi developers and addon developers put in to ensure that
+These addons are also only possible due to the numerous hours the Kodi developers and addon developers put in to ensure that
 you, the user can have as much content as you need.
 
 However, it is incredibly clear that numerous people exist to take content and pass it off as their own. PLEASE do not do that
 if you are going to borrow code, then please ensure you credit those involved.
 
-Author: oneil from Ninjasys - @oneilxm_uk
+Author: oneil - TG: oneilxm
 Git: github.com/fr0stxm
 Addon: Les-Be-Friends
-Thank you / Acknowledgement: Those that exist in the Kodi telegram groups & Kodification for clean_name.py, ][ for his lack of help, Dandymedia for his insight.
+Thank you / Acknowledgement: Those that exist in the Kodi telegram groups & Kodification for clean_name.py
+
+Blatent Advertisement: If you want good quality website/addon/repo hosting, then checkout AntiSocialHosting.com 
 '''
 
 import sys, os, xbmc, xbmcgui, xbmcplugin, xbmcaddon, urllib, urllib2, cookielib, re, clean_name
