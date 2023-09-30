@@ -39,11 +39,11 @@ def CATEGORIES():
 def VIDEOLIST(url):
     pg = 'http://www.perfectgirls.net/'
     link = openURL(url)
-    match = re.compile('<div class="list__item_link"><a href="(.+?)".+?title="(.+?)".+?data-original="(.+?)".+?<time>(.+?)</time>',re.DOTALL).findall(link)
-    for url2,name,img,length in match:
+    match = re.compile('<div class="list__item_link">.*<a target=".*" class=".*" href="(.*?)" title="(.*?)".*\n<img .* data-original="(.*?)".*\n<span>.*<time>(.*?)<\/time>').findall(link)
+    for url2,name,icon,length in match:
         import clean_name
         name = clean_name.clean_name(name)
-        addLink('[COLORred]'+length+'[/COLOR] - '+name,pg+url2,2,icon)
+        addLink('[COLORred]'+length+'[/COLOR] - '+name,pg+url2,2,'https://'+icon)
     next = re.compile('<a class="btn_wrapper__btn" href="([^"]*)">Next</a>').findall(link)
     for item in next:
         if url[-1] in '0123456789':
@@ -63,7 +63,7 @@ def PLAYVIDEO(url):
         if len(sources) == len(match):
             choice = Dialog.select('Select Playlink',[link["quality"] for link in sources])
             if choice != -1:
-                playlink = sources[choice]['playlink']
+                playlink = 'https://'+ sources[choice]['playlink']
                 isFolder=False
                 xbmc.Player().play(playlink)
 

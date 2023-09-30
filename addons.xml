@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addons>
+
+<!-- NOT READY YET
+<addon id="plugin.video.onfckmefcku" name="Fck" version="0.1.01" provider-name="oneil">
+<requires>
+<import addon="xbmc.python" version="2.1.0"/>
+<import addon="script.module.urlresolver"  version="2.10.0"/>
+<import addon="script.module.addon.common" version="2.0.0"/>
+</requires>
+<extension point="xbmc.python.pluginsource" library="default.py">
+<provides>video</provides>
+</extension>
+<extension point="xbmc.addon.metadata">
+<summary lang="en">Fuck me? Fuck you.. Watch quality porn right now with FCK..  18+ only</summary>
+<description lang="en">Fuck me? Fuck you.. Watch quality porn right now with FCK..  18+ only</description>
+<disclaimer lang="en">You should be over 18 to install and use  this addon. The original author neither hosts or stores any content, the original author has no affiliation with content hosts, it is the sole responsibility of the user to ensure they have permission to view any streams provided.</disclaimer>
+<platform>all</platform>
+</extension>
+</addon> -->
+
+<addon id="repository.oneil" name="The [COLOR blue]oneil[/COLOR] [COLOR red]repo[/COLOR] - [COLOR white]xXx addons[/COLOR] [COLOR purple]by oneil[/COLOR]" version="1.3" provider-name="oneil">
+	<extension point="xbmc.addon.repository" name="The [COLOR blue]oneil[/COLOR] [COLOR red]repo[/COLOR] - [COLOR white]xXx addons[/COLOR] [COLOR purple]by oneil[/COLOR]">
+		<info compressed="false">http://r.spankbank.cf/addons.xml</info>
+		<checksum>http://r.spankbank.cf/addons.xml.md5</checksum>
+		<datadir zip="true">http://r.spankbank.cf/zips</datadir>
+
+<dir>
+	<info compressed="false">https://raw.githubusercontent.com/Gujal00/smrzips/master/addons.xml</info>
+    <checksum>https://raw.githubusercontent.com/Gujal00/smrzips/master/addons.xml.md5</checksum>
+    <datadir zip="true">https://raw.githubusercontent.com/Gujal00/smrzips/master/zips/</datadir>
+</dir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>The [COLOR blue]oneil[/COLOR] [COLOR red]repo[/COLOR] - [COLOR white]xXx addons[/COLOR] [COLOR purple]by oneil[/COLOR].</summary>
+		<description>The [COLOR blue]oneil[/COLOR] [COLOR red]repo[/COLOR] - [COLOR white]xXx addons[/COLOR] [COLOR purple]by oneil[/COLOR]</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="plugin.video.onlesbefriends" name="Les-be-Friends" version="0.2.3" provider-name="oneil">
+<requires>
+<import addon="xbmc.python" version="2.1.0"/>
+<import addon="script.module.resolveurl"/>
+<import addon="script.module.addon.common" version="2.0.0"/>
+</requires>
+<extension point="xbmc.python.pluginsource" library="default.py">
+<provides>video</provides>
+</extension>
+<extension point="xbmc.addon.metadata">
+<summary lang="en">HD girl on girl porn for those who like the softer touch..  18+ only</summary>
+<description lang="en">HD girl on girl porn for those who like the softer touch..  18+ only</description>
+<disclaimer lang="en">You should be over 18 to install and use  this addon. The original author neither hosts or stores any content, the original author has no affiliation with content hosts, it is the sole responsibility of the user to ensure they have permission to view any streams provided.</disclaimer>
+<platform>all</platform>
+</extension>
+</addon>
+
+<addon id="plugin.video.jfh" name="Just For Him" version="0.1.3" provider-name="oneil">
+<requires>
+<import addon="xbmc.python" version="2.1.0"/>
+<import addon="script.module.resolveurl"/>
+<import addon="script.module.addon.common" version="2.0.0"/>
+</requires>
+<extension point="xbmc.python.pluginsource" library="default.py">
+<provides>video</provides>
+</extension>
+<extension point="xbmc.addon.metadata">
+<summary lang="en">Watch XXX content from PerfectGirls; Just for Him..  18+ only</summary>
+<description lang="en">Watch XXX content from PerfectGirls; Just for Him.. 18+ only</description>
+<disclaimer lang="en">You should be over 18 to install and use  this addon. The original author neither hosts or stores any content, the original author has no affiliation with content hosts, it is the sole responsibility of the user to ensure they have permission to view any streams provided.</disclaimer>
+<platform>all</platform>
+</extension>
+</addon>
+</addons>
